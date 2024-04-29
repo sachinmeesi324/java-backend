@@ -9,7 +9,7 @@ def call(String imageName, String awsAccountId, String awsRegion) {
                         withCredentials([[
                             $class: 'AmazonWebServicesCredentialsBinding',
                             accessKeyVariable: 'AWS_ACCESS_KEY_ID',
-                            credentialsId: 'K8s',
+                            credentialsId: 'aws_user',
                             secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
                         ]]) {
                             bat 'aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 810678507647.dkr.ecr.eu-north-1.amazonaws.com'         
@@ -19,7 +19,7 @@ def call(String imageName, String awsAccountId, String awsRegion) {
             }
             stage ('git checkout'){
                 steps{
-                    git branch: 'main', credentialsId: '248afc5d-3125-40c3-ad29-d495ee43ebd5', url: 'https://github.com/shouryadutt/java-backend'
+                    git branch: 'main', credentialsId: '248afc5d-3125-40c3-ad29-d495ee43ebd5', url: 'https://github.com/sachinmeesi324/java-backend'
                 }
             }
                      
